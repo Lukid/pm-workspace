@@ -1,0 +1,55 @@
+# PM Workspace .gitignore
+
+# =====================================================
+# PRIVACY: Escludere tutti i dati reali dei progetti
+# =====================================================
+
+# Directory progetti (contiene dati sensibili clienti)
+projects/
+
+# Eccezione: mantenere la directory vuota con .gitkeep
+!projects/.gitkeep
+
+# =====================================================
+# File di sistema e IDE
+# =====================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# =====================================================
+# File temporanei
+# =====================================================
+
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Log
+*.log
+
+# =====================================================
+# Documenti esportati (generati localmente)
+# =====================================================
+
+*.pdf
+*.docx
+!templates/*.md
+!examples/*.md
