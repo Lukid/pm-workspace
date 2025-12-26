@@ -62,6 +62,13 @@
 ### 3.4 Rischi Introdotti
 [Quali rischi introduce questa modifica?]
 
+### 3.5 Impatto su Altri Progetti
+[Se Net7 sta lavorando su altri progetti per lo stesso cliente o se ci sono dipendenze con altri lavori in corso]
+
+| Progetto | Impatto | Note |
+|----------|---------|------|
+| [Nome progetto] | Nessuno / Basso / Medio / Alto | [Descrizione impatto] |
+
 ---
 
 ## 4. Alternative Considerate

@@ -71,9 +71,11 @@
 
 ## 7. Decisioni Richieste
 
-| Decisione | Entro il | Priorità |
-|-----------|----------|----------|
-| [Cosa deve decidere il cliente] | [GG/MM] | Alta/Media |
+| Decisione | Entro il | Priorità | Conseguenza se non deciso |
+|-----------|----------|----------|---------------------------|
+| [Cosa deve decidere il cliente] | [GG/MM] | Alta/Media | [Cosa succede se non decide entro la data] |
+
+> **Nota**: Le decisioni non prese entro la scadenza potrebbero comportare ritardi sul progetto o blocco delle attività correlate. In assenza di risposta, Net7 procederà con l'opzione di default indicata o sospenderà le attività dipendenti.
 
 ---
 

@@ -1,90 +1,93 @@
-# .project-context.md
+---
+# Metadata progetto — YAML valido, parsabile
+nome: "[Nome Progetto]"
+codice: "[Codice interno / CIG / CUP]"
+cliente: "[Nome Cliente]"
+tipo: "PA"  # PA | Privato
+contratto: "Fixed Price"  # Fixed Price | T&M
 
-> Metadata del progetto per l'agente Claude
+budget: 0  # in euro, senza simbolo
+data_inizio: "YYYY-MM-DD"
+data_golive_prevista: "YYYY-MM-DD"
+data_golive_effettiva: null
+stato: "In corso"  # In corso | Completato | Sospeso | Annullato
 
+gitlab_url: "https://gitlab.net7.it/..."
+staging_url: "https://staging..."
+production_url: "https://..."
+drive_folder: "https://drive.google.com/..."
+openmemo_id: ""
+
+team_net7:
+  - ruolo: "PM"
+    nome: "Luca"
+    email: ""
+  - ruolo: "Tech Lead"
+    nome: ""
+    email: ""
+  - ruolo: "Dev"
+    nome: ""
+    email: ""
+  - ruolo: "Designer"
+    nome: ""
+    email: ""
+
+team_cliente:
+  - ruolo: "Sponsor/RUP"
+    nome: ""
+    email: ""
+    telefono: ""
+  - ruolo: "Referente operativo"
+    nome: ""
+    email: ""
+    telefono: ""
+
+gates:
+  G1_wireframe:
+    stato: "pending"  # pending | approved
+    data: null
+  G2_mockup:
+    stato: "pending"
+    data: null
+  G3_uat:
+    stato: "pending"
+    data: null
+  G4_golive:
+    stato: "pending"
+    data: null
+
+note: |
+  [Informazioni importanti da ricordare, peculiarità del cliente, vincoli particolari]
+
+documenti_contesto:
+  - nome: "Progetto esecutivo cliente"
+    presente: false
+  - nome: "Specifiche tecniche"
+    presente: false
+  - nome: "Brand guidelines"
+    presente: false
 ---
 
-## Informazioni Base
+# Project Context
 
-```yaml
-nome: [Nome Progetto]
-codice: [Codice interno / CIG / CUP]
-cliente: [Nome Cliente]
-tipo: PA | Privato
-contratto: Fixed Price | T&M
-```
+Questo file contiene i metadata del progetto in formato YAML (frontmatter).
 
----
+## Come usare questo file
 
-## Budget e Timeline
+1. **Compila il frontmatter YAML** sopra con i dati reali del progetto
+2. **Aggiorna lo stato dei gate** man mano che vengono approvati
+3. **Aggiungi note** per informazioni importanti da ricordare
 
-```yaml
-budget: €XX.XXX
-data_inizio: YYYY-MM-DD
-data_golive_prevista: YYYY-MM-DD
-data_golive_effettiva: 
-stato: In corso | Completato | Sospeso | Annullato
-```
+## Documenti di contesto
 
----
+Carica nella cartella `context/` i documenti esterni rilevanti:
+- Progetto esecutivo del cliente
+- Specifiche tecniche
+- Brand guidelines
+- Email importanti
+- Altro materiale di riferimento
 
-## Link e Risorse
-
-```yaml
-gitlab_url: https://gitlab.net7.it/...
-staging_url: https://staging...
-production_url: https://...
-drive_folder: https://drive.google.com/...
-openmemo_id: [ID progetto OpenMemo]
-```
-
----
-
-## Team Net7
-
-| Ruolo | Nome | Email |
-|-------|------|-------|
-| PM | [Nome] | [email] |
-| Tech Lead | [Nome] | [email] |
-| Dev | [Nome] | [email] |
-| Designer | [Nome] | [email] |
-
----
-
-## Team Cliente
-
-| Ruolo | Nome | Email | Telefono |
-|-------|------|-------|----------|
-| Sponsor/RUP | [Nome] | [email] | [tel] |
-| Referente operativo | [Nome] | [email] | [tel] |
-| Referente tecnico | [Nome] | [email] | [tel] |
-
----
-
-## Stato Gate
-
-| Gate | Stato | Data |
-|------|-------|------|
-| G1 - Wireframe | ⏳ Pending / ✅ Approvato | [Data] |
-| G2 - Mockup | ⏳ Pending / ✅ Approvato | [Data] |
-| G3 - UAT | ⏳ Pending / ✅ Approvato | [Data] |
-| G4 - Go-live | ⏳ Pending / ✅ Approvato | [Data] |
-
----
-
-## Note Progetto
-
-[Informazioni importanti da ricordare, peculiarità del cliente, vincoli particolari, ecc.]
-
----
-
-## Documenti Contesto
-
-Elenco documenti esterni caricati in `context/`:
-- [ ] Progetto esecutivo cliente
-- [ ] Specifiche tecniche
-- [ ] Brand guidelines
-- [ ] Altro: [specificare]
+Poi aggiorna la sezione `documenti_contesto` nel frontmatter.
 
 ---
 

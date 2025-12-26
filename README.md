@@ -2,7 +2,7 @@
 
 > Repository metodologica per la gestione progetti Net7
 
-## 🎯 Scopo
+## Scopo
 
 Questa repository contiene:
 - **Metodologia** di gestione progetti (processi, definizioni, convenzioni)
@@ -14,14 +14,30 @@ I **dati reali dei progetti** vivono nella cartella `projects/` che è **esclusa
 
 ---
 
+## Modalità di Utilizzo
+
+Questo workspace supporta **due modalità** con Claude Code:
+
+### PM Mode (default)
+Per gestire progetti reali. Si attiva automaticamente quando parli di progetti specifici.
+
+### Develop Mode
+Per lavorare sulla struttura del workspace stesso. Attiva con `modalità develop`.
+
+Vedi `CLAUDE.md` per i dettagli.
+
+---
+
 ## 📁 Struttura
 
 ```
 pm-workspace/
-├── CLAUDE.md                 # Istruzioni per l'agente AI
+├── CLAUDE.md                 # Istruzioni per l'agente AI (snello)
+├── BACKLOG.md                # Miglioramenti futuri del workspace
 ├── README.md                 # Questo file
 │
 ├── methodology/              # Come lavoriamo
+│   ├── ai-guidelines.md      # Linee guida AI dettagliate
 │   ├── process-guide.md      # Processo gate-based
 │   ├── definitions.md        # DoR, DoD, severity, SLA
 │   ├── gitlab-conventions.md # Label, board, milestone
