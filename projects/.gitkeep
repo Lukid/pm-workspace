@@ -1,0 +1,22 @@
+# Questa directory contiene i dati dei progetti reali
+# I contenuti sono esclusi dal repository Git per privacy
+
+# Per creare un nuovo progetto:
+# 1. Crea una sottodirectory con il nome del progetto
+# 2. Copia i template da ../templates/
+# 3. Compila .project-context.md con i metadata
+
+# Struttura tipica progetto:
+# [nome-progetto]/
+# ├── .project-context.md
+# ├── brief.md
+# ├── raid.md
+# ├── actions.md
+# ├── decisions.md
+# ├── gates/
+# ├── changes/
+# ├── sal/
+# ├── uat/
+# ├── golive/
+# ├── comms/
+# └── context/

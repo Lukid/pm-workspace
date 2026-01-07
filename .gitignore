@@ -5,7 +5,8 @@
 # =====================================================
 
 # Directory progetti (contiene dati sensibili clienti)
-projects/
+# Uso /* invece di / per permettere l'eccezione del .gitkeep
+projects/*
 
 # Eccezione: mantenere la directory vuota con .gitkeep
 !projects/.gitkeep
