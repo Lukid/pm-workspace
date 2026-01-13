@@ -1,12 +1,27 @@
 # Convenzioni GitLab
 
-Guida alla configurazione e utilizzo di GitLab per i progetti Net7.
+Guida alla configurazione tecnica di GitLab per i progetti Net7.
+
+> Questo documento è complementare a [gitlab-workflow.md](gitlab-workflow.md), che definisce il processo operativo completo.
 
 ---
 
 ## 1. Struttura Repository
 
-### Naming
+### Modello organizzativo
+
+Il GitLab è organizzato **per tipologia applicativa**, non per cliente.
+
+**Group di primo livello** = tecnologia/framework:
+- `laravel/`
+- `drupal/`
+- `wordpress/`
+
+**Project** = applicazione specifica. Se l'architettura lo richiede:
+- `nome-app-frontend`
+- `nome-app-backend`
+
+### Naming Project
 ```
 [cliente]-[progetto]
 ```
@@ -31,8 +46,6 @@ Esempi: `anci-portale-cittadino`, `comune-pisa-sito-istituzionale`
 | `feature/` | Nuova funzionalità |
 | `bugfix/` | Correzione bug |
 | `hotfix/` | Fix urgente produzione |
-| `design/` | Asset grafici |
-| `content/` | Contenuti |
 | `refactor/` | Refactoring tecnico |
 | `docs/` | Documentazione |
 
@@ -43,89 +56,107 @@ Esempi:
 
 ---
 
-## 2. Labels (Etichette)
+## 2. Labels
 
-### Setup iniziale
+Creare a livello di **Gruppo** per riutilizzarle su tutti i progetti.
 
-Creare queste label a livello di **Gruppo** per riutilizzarle su tutti i progetti:
+> **Formato**: `categoria::valore` (lowercase con doppio due punti)
 
-#### Status (Stato)
+### Type (obbligatoria)
 ```
-Status::Backlog     #6699cc (blu chiaro)
-Status::Ready       #428bca (blu)
-Status::Doing       #f0ad4e (arancione)
-Status::Review      #9b59b6 (viola)
-Status::Staging     #3498db (azzurro)
-Status::UAT         #e67e22 (arancione scuro)
-Status::Done        #5cb85c (verde)
-Status::Blocked     #d9534f (rosso)
+type::task          #95a5a6
+type::feature       #7f8c8d
+type::bug           #e74c3c
+type::incident      #c0392b
 ```
 
-#### Type (Tipo)
+### Priority (obbligatoria)
 ```
-Type::Feature       #7f8c8d (grigio)
-Type::Bug           #e74c3c (rosso)
-Type::Task          #95a5a6 (grigio chiaro)
-Type::Design        #9b59b6 (viola)
-Type::Content       #1abc9c (turchese)
-Type::Research      #f39c12 (giallo)
-Type::PM            #34495e (grigio scuro)
+priority::critical  #c0392b   # Blocco business / produzione giù
+priority::high      #e74c3c   # Molto importante (rischio alto)
+priority::medium    #f39c12   # Normale
+priority::low       #27ae60   # Bassa / nice-to-have
 ```
 
-#### Priority (Priorità)
+### Urgency (obbligatoria)
 ```
-Priority::Critical  #c0392b (rosso scuro)
-Priority::High      #e74c3c (rosso)
-Priority::Medium    #f39c12 (giallo)
-Priority::Low       #27ae60 (verde)
-```
-
-#### Severity (per bug)
-```
-Severity::Blocker   #c0392b (rosso scuro)
-Severity::Major     #e74c3c (rosso)
-Severity::Minor     #f39c12 (giallo)
-Severity::Cosmetic  #95a5a6 (grigio)
+urgency::immediate  #c0392b   # Intervento immediato (incident/hotfix)
+urgency::short-term #e74c3c   # Presa in carico entro 1 giorno lavorativo
+urgency::normal     #f39c12   # Presa in carico entro 3 giorni lavorativi
+urgency::planned    #27ae60   # Pianificabile senza impatti immediati
 ```
 
-#### Scope
+### Impact (consigliata)
 ```
-Scope::Extra        #8e44ad (viola scuro)
-Scope::Garanzia     #2c3e50 (grigio scuro)
+impact::high        #c0392b
+impact::medium      #f39c12
+impact::low         #27ae60
 ```
 
-#### Gate
+### Status — solo per eccezioni (NON sono colonne)
 ```
-Gate::G1            #3498db (azzurro)
-Gate::G2            #9b59b6 (viola)
-Gate::G3            #e67e22 (arancione)
-Gate::G4            #27ae60 (verde)
+status::blocked       #d9534f   # Impedimento esterno o dipendenza
+status::waiting-input #f0ad4e   # Attesa info dal richiedente
+```
+
+### Area (consigliata)
+```
+area::frontend      #3498db
+area::backend       #9b59b6
+area::devops        #e67e22
+area::data          #1abc9c
+```
+
+### Scope — gestione contrattuale
+```
+scope::extra        #8e44ad
+scope::garanzia     #2c3e50
+```
+
+### Gate — tracciamento approvazioni
+```
+gate::g1            #3498db
+gate::g2            #9b59b6
+gate::g3            #e67e22
+gate::g4            #27ae60
 ```
 
 ---
 
 ## 3. Issue Board
 
-### Configurazione colonne
+### Board "Delivery" (default)
 
-Creare board con colonne basate su label `Status::*`:
+Colonne basate sugli **8 stati** del workflow:
 
 ```
-| Backlog | Ready | Doing | Review | Staging | UAT | Done |
+| Backlog | Triage | Ready | In progress | In review | QA/Validation | Ready to deploy | Done |
 ```
 
-### Board alternativi (opzionali)
+| Colonna | Significato |
+|---------|-------------|
+| Backlog | Idee/richieste raccolte, non pronte |
+| Triage | Classificazione: tipo, impatto, urgenza, info mancanti |
+| Ready | Requisiti completi, pronto per essere preso in carico |
+| In progress | Lavorazione attiva (deve avere assignee) |
+| In review | MR aperta, code review in corso |
+| QA/Validation | Test funzionali / regressione / UAT |
+| Ready to deploy | Approvato, in attesa di rilascio |
+| Done | Rilasciato/chiuso |
 
-- **By Priority**: colonne per priorità
-- **By Type**: colonne per tipo attività
-- **By Assignee**: raggruppato per persona
+### Board alternativi
+
+| Board | Scopo | Filtro |
+|-------|-------|--------|
+| **Triage** | Issue da classificare o bloccate | `status::waiting-input` + `status::blocked` |
+| **Incident & Hotfix** | Emergenze | `type::incident` OR `urgency::immediate` |
+| **Per area** | Focus per team | `area::*` |
 
 ---
 
 ## 4. Milestones
 
 ### Naming convention
-
 ```
 [Fase/Sprint] - [Nome descrittivo] (vX.Y)
 ```
@@ -133,95 +164,85 @@ Creare board con colonne basate su label `Status::*`:
 Esempi:
 - `Fase 1 - MVP (v1.0)`
 - `Sprint 1 - Setup e Login`
-- `Sprint 2 - Area Riservata`
 - `Hotfix (v1.0.1)`
-- `Fase 2 - Evolutive (v2.0)`
+- `Maintenance Q1`
 
 ### Date
-
-- **Start Date**: inizio lavori su quella milestone
+- **Start Date**: inizio lavori
 - **Due Date**: deadline (allineata a SAL o gate)
-
-### Milestone standard per progetto nuovo
-
-1. `Fase 0 - Setup e Analisi`
-2. `Fase 1 - MVP (v1.0)` → G1 (Wireframe)
-3. `Fase 2 - Design` → G2 (Mockup)
-4. `Fase 3 - Sviluppo Core`
-5. `Fase 4 - UAT` → G3 (UAT)
-6. `Fase 5 - Go-Live` → G4 (Accettazione)
-7. `Garanzia`
 
 ---
 
 ## 5. Issue Templates
 
-### Feature Template
+### Template Task/Feature
 
 Creare file `.gitlab/issue_templates/Feature.md`:
 
 ```markdown
-## Descrizione
-<!-- Cosa deve fare questa funzionalità -->
+## Contesto
+<!-- Perché esiste questa richiesta -->
 
-## User Story
-**Come** [tipo utente]
-**Voglio** [azione]
-**In modo da** [beneficio]
+## Obiettivo
+<!-- Cosa deve cambiare -->
 
-## Criteri di Accettazione
-- [ ] **DATO CHE** ... **QUANDO** ... **ALLORA** ...
-- [ ] **DATO CHE** ... **QUANDO** ... **ALLORA** ...
+## Criteri di accettazione
+- [ ] Dato X, quando Y, allora Z
+- [ ] ...
 
-## Asset necessari
-<!-- Link a grafiche, documenti, API... -->
+## Impatto
+<!-- Utenti/aree coinvolte -->
 
-## Note tecniche
+## Note tecniche / dipendenze
 <!-- Considerazioni per lo sviluppo -->
 
-## Stima
-<!-- Ore o story point -->
+## Checklist
+- [ ] ...
 
-/label ~"Type::Feature" ~"Status::Backlog"
+/label ~"type::feature"
 ```
 
-### Bug Template
+### Template Bug/Incident
 
 Creare file `.gitlab/issue_templates/Bug.md`:
 
 ```markdown
-## Descrizione
-**Cosa succede**: 
-**Cosa dovrebbe succedere**: 
+## Ambiente
+<!-- prod/stage -->
+
+## Descrizione del problema
+<!-- Cosa succede -->
 
 ## Passi per riprodurre
-1. 
-2. 
-3. 
+1.
+2.
+3.
 
-## Ambiente
-- **Browser**: 
-- **Device**: 
-- **URL**: 
+## Comportamento atteso vs reale
+- **Atteso**:
+- **Reale**:
 
-## Screenshot/Video
-<!-- Allegare se disponibile -->
+## Impatto
+<!-- Utenti/aree coinvolte -->
 
-## Severity
-<!-- Blocker / Major / Minor / Cosmetic -->
+## Log/screenshot/link
+<!-- Allegati -->
 
-/label ~"Type::Bug" ~"Status::Backlog"
+## Workaround
+<!-- Se disponibile -->
+
+/label ~"type::bug"
 ```
 
-### Change Request Template
+### Template Change Request
 
 Creare file `.gitlab/issue_templates/ChangeRequest.md`:
 
 ```markdown
 ## CR-XXX: [Titolo]
 
-**Richiesto da**: 
-**Data richiesta**: 
+**Richiesto da**:
+**Data richiesta**:
 **Riferimento**: <!-- email, call, documento -->
 
 ## Descrizione richiesta
@@ -233,17 +254,17 @@ Creare file `.gitlab/issue_templates/ChangeRequest.md`:
 ## Analisi impatto
 
 ### Effort stimato
-- Ore sviluppo: 
-- Ore design: 
-- Ore test: 
-- **Totale**: 
+- Ore sviluppo:
+- Ore design:
+- Ore test:
+- **Totale**:
 
 ### Impatto economico
-- Costo extra: €
+- Costo extra:
 
 ### Impatto timeline
-- Ritardo previsto: 
-- Nuova data consegna: 
+- Ritardo previsto:
+- Nuova data consegna:
 
 ### Rischi
 <!-- Rischi introdotti dalla modifica -->
@@ -253,10 +274,10 @@ Creare file `.gitlab/issue_templates/ChangeRequest.md`:
 - [ ] Rifiutata
 - [ ] In valutazione
 
-**Data decisione**: 
-**Approvato da**: 
+**Data decisione**:
+**Approvato da**:
 
-/label ~"Type::Feature" ~"Scope::Extra" ~"Status::Backlog"
+/label ~"type::feature" ~"scope::extra"
 ```
 
 ---
@@ -264,11 +285,9 @@ Creare file `.gitlab/issue_templates/ChangeRequest.md`:
 ## 6. Merge Request
 
 ### Naming
-
 ```
 [Issue ID] - [Descrizione breve]
 ```
-
 Esempio: `#123 - Implementazione login SPID`
 
 ### Template MR
@@ -298,14 +317,14 @@ Closes #XXX
 <!-- Prima / Dopo -->
 
 ## Note per il reviewer
-<!-- Punti di attenzione, aree da verificare -->
+<!-- Punti di attenzione -->
 ```
 
 ### Regole MR
 
 1. **Sempre da branch a develop** (mai push diretto)
 2. **Almeno 1 approvazione** prima di merge
-3. **Issue collegata** obbligatoria
+3. **Issue collegata** obbligatoria (`Closes #ID`)
 4. **Pipeline green** (se CI/CD attiva)
 
 ---
@@ -313,7 +332,6 @@ Closes #XXX
 ## 7. Commit Messages
 
 ### Formato
-
 ```
 [tipo]: [descrizione breve]
 
@@ -329,7 +347,7 @@ Closes #XXX
 | `feat` | Nuova funzionalità |
 | `fix` | Bug fix |
 | `refactor` | Refactoring (no nuova feature, no fix) |
-| `style` | Formattazione, spazi, ecc. |
+| `style` | Formattazione, spazi |
 | `docs` | Documentazione |
 | `test` | Aggiunta/modifica test |
 | `chore` | Maintenance, dipendenze |
@@ -358,51 +376,38 @@ Fixes #456
 
 ## 8. Time Tracking
 
-GitLab Free supporta time tracking base:
-
 ### Stimare
-
 ```
 /estimate 4h
 /estimate 2d
 ```
 
 ### Registrare tempo speso
-
 ```
 /spend 2h
 /spend 30m
 ```
 
-### Visualizzare
-
-Il tempo stimato e speso appare nella sidebar dell'issue.
-
 ### Best practice
-
 - Stimare **prima** di iniziare (in fase Ready)
-- Registrare tempo **ogni giorno** (o a fine task)
-- Il PM usa questi dati per confronto con OpenMemo
+- Registrare tempo **ogni giorno** o a fine task
 
 ---
 
 ## 9. Quick Actions Utili
 
-Da usare nei commenti o descrizioni:
-
 | Comando | Effetto |
 |---------|---------|
 | `/assign @username` | Assegna issue |
 | `/unassign` | Rimuove assegnazione |
-| `/label ~"Label"` | Aggiunge label |
-| `/unlabel ~"Label"` | Rimuove label |
+| `/label ~"label"` | Aggiunge label |
+| `/unlabel ~"label"` | Rimuove label |
 | `/milestone %"Nome"` | Assegna a milestone |
 | `/due YYYY-MM-DD` | Imposta scadenza |
 | `/estimate Xh` | Stima tempo |
 | `/spend Xh` | Registra tempo |
 | `/close` | Chiude issue |
 | `/reopen` | Riapre issue |
-| `/move project/path` | Sposta issue |
 
 ---
 
@@ -410,14 +415,14 @@ Da usare nei commenti o descrizioni:
 
 ### Checklist
 
-1. [ ] Creare repository con naming corretto
+1. [ ] Creare repository nel Group corretto (per tecnologia)
 2. [ ] Proteggere branch `main` e `develop`
-3. [ ] Creare label (o verificare che esistano a livello gruppo)
+3. [ ] Verificare label a livello gruppo (o crearle)
 4. [ ] Creare milestones iniziali
-5. [ ] Configurare issue board
-6. [ ] Aggiungere issue templates
-7. [ ] Aggiungere MR template
-8. [ ] Creare prima issue di setup
+5. [ ] Configurare Board "Delivery" con 8 colonne
+6. [ ] Creare Board alternativi (Triage, Incident)
+7. [ ] Aggiungere Issue templates
+8. [ ] Aggiungere MR template
 9. [ ] Invitare membri del team con ruoli appropriati
 
 ### Ruoli suggeriti
@@ -425,7 +430,7 @@ Da usare nei commenti o descrizioni:
 | Ruolo GitLab | Chi | Permessi chiave |
 |--------------|-----|-----------------|
 | Maintainer | PM, Tech Lead | Merge in main, gestione settings |
-| Developer | Dev, Designer | Push branch, MR, issue |
+| Developer | Dev | Push branch, MR, issue |
 | Reporter | Cliente (se accesso) | Solo lettura, commenti |
 
 ---
