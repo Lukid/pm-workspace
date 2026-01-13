@@ -114,10 +114,11 @@ Max 3 domande se mancano info, poi assumo default ragionevoli.
 - [methodology/ai-guidelines.md](methodology/ai-guidelines.md) — Linee guida AI complete
 - [methodology/process-guide.md](methodology/process-guide.md) — Processo gate-based
 - [methodology/definitions.md](methodology/definitions.md) — DoR, DoD, severity, SLA
-- [methodology/gitlab-conventions.md](methodology/gitlab-conventions.md) — Label, board, milestone
+- [methodology/gitlab-workflow.md](methodology/gitlab-workflow.md) — Workflow e gestione Issue
+- [methodology/gitlab-setup.md](methodology/gitlab-setup.md) — Setup tecnico GitLab (branch, commit, MR)
 - [methodology/communication-style.md](methodology/communication-style.md) — Stile comunicazione
 - [BACKLOG.md](BACKLOG.md) — Miglioramenti futuri del workspace
 
 ---
 
-*Ultimo aggiornamento: Dicembre 2024*
+*Ultimo aggiornamento: Gennaio 2026*

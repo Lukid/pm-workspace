@@ -114,7 +114,27 @@ Luca può passarmi documenti da mettere in `projects/X/context/`:
 
 ## 5. Template Documenti
 
-Quando genero un documento, includo sempre:
+### Mapping comando → template
+
+| Comando | Template da usare |
+|---------|-------------------|
+| `Genera gate G1` | templates/gate-G1-wireframe.md |
+| `Genera gate G2` | templates/gate-G2-mockup.md |
+| `Genera gate G3` | templates/gate-G3-uat.md |
+| `Genera gate G4` | templates/gate-G4-golive.md |
+| `Genera brief` | templates/project-brief.md |
+| `Scrivi SAL` | templates/sal.md |
+| `Apri CR` | templates/change-request.md |
+| `Prepara UAT` | templates/uat-plan.md + templates/uat-checklist.md |
+| `Piano go-live` | templates/golive-plan.md + templates/rollback-plan.md |
+
+### Regola fondamentale
+
+**DEVO usare la struttura ESATTA del template**, compilando i placeholder con i dati del progetto. Non inventare sezioni o formati diversi.
+
+### Elementi standard (se non c'è template specifico)
+
+Quando genero un documento senza template dedicato, includo sempre:
 - **Header**: versione, data, owner, destinatari/approvatore
 - **Scopo**: perché esiste questo documento
 - **Perimetro**: cosa copre, cosa è escluso (Out of Scope)
