@@ -4,6 +4,40 @@
 
 ---
 
+## 🚀 Iniziative Strategiche (In Planning)
+
+### A. MCP Server + Subagent Architecture
+**Vision**: Automazione workflow PM + integrazione GitLab + OpenSpec per progetti software.
+**Fase**: Pianificazione completata ([INTEGRATION-PLAN.md](INTEGRATION-PLAN.md))
+**Impatto**: 🔥 Molto Alto - Trasforma il workspace da statico ad automation-first
+
+**Roadmap**:
+- **Fase 0**: Setup MCP Server GitLab esistente (n8n) ⚡ **CURRENT**
+- **Fase 1**: GitLab MCP Enhancement (CRUD issue, branch, MR, sync)
+- **Fase 2**: OpenSpec Integration (spec-driven development per progetti software)
+- **Fase 3**: Workspace MCP (comandi custom: `genera SAL`, `apri CR`, etc.)
+- **Fase 4**: Subagent Architecture (PM Agent + Dev Agent + Orchestrator)
+- **Fase 5**: Advanced Features (analytics, AI insights, integrazioni esterne)
+
+**Dipendenze**:
+- GitLab self-hosted API access (gitlab.netseven.it)
+- OpenSpec installation (`npm install -g @fission-ai/openspec`)
+- MCP server development capability
+
+**Next Steps**:
+1. [x] Analizzare MCP server n8n esistente
+2. [x] Documentare current state
+3. [x] Identificare gap vs requirements
+4. [ ] Implementare miglioramenti (vedi mcp-servers/gitlab-net7/MIGRATION-GUIDE.md)
+5. [ ] Test su progetto pilota
+
+**Riferimenti**:
+- [INTEGRATION-PLAN.md](INTEGRATION-PLAN.md) - Piano completo dettagliato
+- [OpenSpec GitHub](https://github.com/Fission-AI/OpenSpec)
+- [methodology/gitlab-workflow.md](methodology/gitlab-workflow.md)
+
+---
+
 ## Gap Critici (Priorità Alta)
 
 ### 1. Template Lessons Learned
@@ -179,4 +213,4 @@ Agenda strutturata per il primo incontro con il cliente.
 
 ---
 
-*Ultimo aggiornamento: Dicembre 2024*
+*Ultimo aggiornamento: Gennaio 2026*
