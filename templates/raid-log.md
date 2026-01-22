@@ -27,10 +27,10 @@
 
 ## Rischi (R)
 
-| ID | Rischio | Prob. | Impatto | Livello | Mitigazione | Owner | Stato |
-|----|---------|-------|---------|---------|-------------|-------|-------|
-| R-001 | [Descrizione] | A/M/B | A/M/B | 🔴/🟡/🟢 | [Azione] | [Chi] | Aperto |
-| R-002 | [Descrizione] | A/M/B | A/M/B | 🔴/🟡/🟢 | [Azione] | [Chi] | Mitigato |
+| ID | Rischio | Prob. | Impatto | Livello | Mitigazione | Owner | Stato | Issue GitLab |
+|----|---------|-------|---------|---------|-------------|-------|-------|--------------|
+| R-001 | [Descrizione] | A/M/B | A/M/B | 🔴/🟡/🟢 | [Azione] | [Chi] | Aperto | [#456](https://gitlab.../issues/456) |
+| R-002 | [Descrizione] | A/M/B | A/M/B | 🔴/🟡/🟢 | [Azione] | [Chi] | Mitigato | - |
 
 ### Legenda Livello
 - 🔴 Alto (prob. alta + impatto alto)
@@ -61,10 +61,10 @@
 
 ## Issue (I)
 
-| ID | Issue | Impatto | Azione | Owner | Scadenza | Stato |
-|----|-------|---------|--------|-------|----------|-------|
-| I-001 | [Problema verificatosi] | A/M/B | [Cosa fare] | [Chi] | [Data] | Aperta |
-| I-002 | [Problema verificatosi] | A/M/B | [Cosa fare] | [Chi] | [Data] | Risolta |
+| ID | Issue | Impatto | Azione | Owner | Scadenza | Stato | Issue GitLab |
+|----|-------|---------|--------|-------|----------|-------|--------------|
+| I-001 | [Problema verificatosi] | A/M/B | [Cosa fare] | [Chi] | [Data] | Aperta | [#789](https://gitlab.../issues/789) |
+| I-002 | [Problema verificatosi] | A/M/B | [Cosa fare] | [Chi] | [Data] | Risolta | - |
 
 ### Stati Issue
 - **Aperta**: problema attivo
@@ -95,6 +95,16 @@
 |------|---------------|
 | [Data] | [Cosa è cambiato] |
 | [Data] | [Cosa è cambiato] |
+
+---
+
+## Note Sincronizzazione GitLab
+
+- Usa il comando `Sincronizza GitLab [progetto]` per creare automaticamente issue GitLab da rischi e issue critici
+- Rischi 🔴 (Alto) → Issue GitLab tipo `incident` con severity P0
+- Rischi 🟡 (Medio) → Issue GitLab tipo `bug` con severity P1
+- Issue con impatto Alto → Issue GitLab tipo `incident` con severity P0/P1
+- Il comando aggiornerà automaticamente la colonna "Issue GitLab" con i link
 
 ---
 

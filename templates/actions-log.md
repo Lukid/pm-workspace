@@ -15,11 +15,11 @@
 
 ## Azioni Aperte
 
-| ID | Azione | Owner | Scadenza | Priorità | Origine | Stato |
-|----|--------|-------|----------|----------|---------|-------|
-| A-001 | [Descrizione azione] | [Chi] | [Data] | 🔴/🟡/🟢 | [SAL/Call/Email] | 🔄 In corso |
-| A-002 | [Descrizione azione] | [Chi] | [Data] | 🔴/🟡/🟢 | [Origine] | ⏳ Da fare |
-| A-003 | [Descrizione azione] | [Chi] | [Data] | 🔴/🟡/🟢 | [Origine] | ⚠️ In ritardo |
+| ID | Azione | Owner | Scadenza | Priorità | Origine | Stato | Issue GitLab |
+|----|--------|-------|----------|----------|---------|-------|--------------|
+| A-001 | [Descrizione azione] | [Chi] | [Data] | 🔴/🟡/🟢 | [SAL/Call/Email] | 🔄 In corso | [#123](https://gitlab.../issues/123) |
+| A-002 | [Descrizione azione] | [Chi] | [Data] | 🔴/🟡/🟢 | [Origine] | ⏳ Da fare | - |
+| A-003 | [Descrizione azione] | [Chi] | [Data] | 🔴/🟡/🟢 | [Origine] | ⚠️ In ritardo | - |
 
 ---
 
@@ -51,8 +51,18 @@
 ## Template Azione (copia e compila)
 
 ```markdown
-| A-XXX | [Descrizione] | [Chi] | [Data] | 🟡 | [Origine] | ⏳ |
+| A-XXX | [Descrizione] | [Chi] | [Data] | 🟡 | [Origine] | ⏳ | - |
 ```
+
+---
+
+## Note Sincronizzazione GitLab
+
+- Usa il comando `Sincronizza GitLab [progetto]` per creare automaticamente issue GitLab dalle azioni aperte
+- Le azioni con priorità 🔴 → Issue P0 (critical)
+- Le azioni con priorità 🟡 → Issue P1 (high)
+- Le azioni con priorità 🟢 → Issue P2 (medium)
+- Il comando aggiornerà automaticamente la colonna "Issue GitLab" con i link
 
 ---
 
