@@ -56,12 +56,60 @@ Per tornare: `modalità pm` o `pm mode`
 | `Aggiungi azione: [cosa] per [chi] entro [quando]` | Aggiorna actions.md |
 | `Aggiungi decisione: [cosa]` | Aggiorna decisions.md |
 | `Aggiungi rischio: [descrizione]` | Aggiorna raid.md |
+| **`Sincronizza GitLab [progetto]`** | **Crea issue GitLab da task non sincronizzati** |
 
 ### Comunicazione
 | Comando | Azione |
 |---------|--------|
 | `Cosa dico al cliente per [cosa]?` | Bozza email |
 | `Come gestisco [situazione]?` | Consiglio metodologico |
+
+---
+
+## Sincronizzazione GitLab
+
+### Comando Base
+```
+Sincronizza GitLab [nome-progetto]
+```
+
+**Funzionamento:**
+1. Legge `.project-context.md` per identificare il campo `gitlab_project`
+2. Analizza `actions.md` e `raid.md` per identificare task senza issue GitLab
+3. Per ogni task crea issue su GitLab via MCP server n8n:
+   - Mappa priorità → severity (🔴=P0, 🟡=P1, 🟢=P2)
+   - Determina type (azione=task, rischio P0/P1=incident, resto=bug)
+   - Applica template strutturati secondo metodologia
+4. Aggiorna i file workspace con link alle issue create
+
+**Esempi:**
+```
+Sincronizza GitLab anci-cittadino-informato
+Sincronizza GitLab sviluppo-toscana solo azioni
+Sincronizza GitLab ispro dry-run
+```
+
+**Opzioni:**
+- `solo azioni` — Sincronizza solo actions.md
+- `solo rischi` — Sincronizza solo raid.md (rischi P0/P1)
+- `dry-run` — Mostra cosa verrebbe fatto senza creare issue
+
+**Mapping Priorità → Severity:**
+| Priorità Workspace | Severity GitLab | Label GitLab |
+|-------------------|-----------------|--------------|
+| 🔴 Alta | P0 (critical) | priority::critical + urgency::immediate |
+| 🟡 Media | P1 (high) | priority::high + urgency::short-term |
+| 🟢 Bassa | P2 (medium) | priority::medium + urgency::normal |
+
+**Requisiti:**
+- Il progetto deve avere il campo `gitlab_project` in `.project-context.md`
+- Il progetto GitLab deve essere mappato nel workflow n8n
+- Le label devono esistere su GitLab (vedi [gitlab-workflow.md](methodology/gitlab-workflow.md))
+
+**Note:**
+- Le issue create avranno template strutturati (DoR compliant)
+- I link issue verranno aggiunti automaticamente nei file markdown
+- La sincronizzazione è unidirezionale (workspace → GitLab)
 
 ---
 
