@@ -1,248 +1,144 @@
-# Gate G1 — Approvazione Wireframe e Scope
-
-> Documento di approvazione del perimetro funzionale e della struttura
+# GATE G1 — Approvazione Wireframe e Scope
 
 ---
 
-## Metadata
+**Progetto**: [Nome progetto]
+**Cliente**: [Nome cliente]
+**Fornitore**: Net7 S.r.l.
+**CIG/CUP**: [Codice]
 
-| Campo | Valore |
-|-------|--------|
-| **Progetto** | [Nome progetto] |
-| **Cliente** | [Nome cliente] |
-| **Versione** | 1.0 |
-| **Data** | [GG/MM/AAAA] |
-| **Redatto da** | [Nome PM] |
-| **Destinatario** | [Nome referente cliente] |
-| **Scadenza feedback** | [Data - 5gg lavorativi] |
-| **Scadenza approvazione** | [Data - 3gg dopo feedback] |
+**Data consegna**: [GG/MM/AAAA]
+**Protocollo**: G1-[CODICE]-[ANNO]-001
 
 ---
 
-## 1. Scopo del Documento
+## 1. Oggetto
 
-Questo documento richiede l'approvazione formale di:
-1. **Perimetro funzionale** del progetto
-2. **Struttura e navigazione** (wireframe)
-3. **Criteri di accettazione** delle funzionalità
+Con il presente documento si sottopone formalmente all'approvazione del Cliente il **perimetro funzionale e la struttura** di [nome deliverable], come previsto dal Progetto Esecutivo.
 
-L'approvazione di questo documento costituisce il **Gate G1** e autorizza l'avvio della fase di design UI (mockup grafici).
+Il superamento del presente Gate (G1) costituisce **requisito propedeutico** all'avvio della fase di design UI (mockup grafici).
 
 ---
 
-## 2. Perimetro Funzionale
+## 2. Deliverable consegnati
 
-### 2.1 Funzionalità Incluse ✅
+### 2.1 Perimetro funzionale
 
-| ID | Funzionalità | Descrizione | Priorità |
-|----|--------------|-------------|----------|
-| F01 | [Nome] | [Descrizione breve] | Must |
-| F02 | [Nome] | [Descrizione breve] | Must |
-| F03 | [Nome] | [Descrizione breve] | Should |
-| F04 | [Nome] | [Descrizione breve] | Could |
+- Documento scope: [Link]
+- Requisiti funzionali: [Link]
 
-**Legenda priorità:**
-- **Must**: Obbligatorio per il go-live
-- **Should**: Importante, da includere se possibile
-- **Could**: Desiderabile, valutabile in base a tempi/budget
+### 2.2 Architettura dell'informazione
 
-### 2.2 Esplicitamente Escluso ❌
+- Sitemap: [Link Figma/Miro]
+- Alberatura contenuti: [Link]
 
-| ID | Funzionalità/Elemento | Motivo esclusione |
-|----|----------------------|-------------------|
+### 2.3 Wireframe
+
+- Wireframes completi: [Link Figma]
+- Flussi utente: [Link]
+
+| Wireframe | Link |
+| :---- | :---- |
+| Homepage | ✓ [Figma](link) |
+| [Pagina listing] | ✓ [Figma](link) |
+| [Pagina dettaglio] | ✓ [Figma](link) |
+| [Area riservata] | ✓ [Figma](link) |
+
+---
+
+## 3. Perimetro funzionale
+
+### 3.1 Funzionalità incluse
+
+| ID | Funzionalità | Priorità |
+| :---- | :---- | :---- |
+| F01 | [Nome funzionalità] | Must |
+| F02 | [Nome funzionalità] | Must |
+| F03 | [Nome funzionalità] | Should |
+| F04 | [Nome funzionalità] | Could |
+
+**Legenda**: Must = obbligatorio | Should = importante | Could = desiderabile
+
+### 3.2 Esplicitamente escluso
+
+| ID | Elemento escluso | Motivo |
+| :---- | :---- | :---- |
 | X01 | [Nome] | [Motivo] |
 | X02 | [Nome] | [Motivo] |
-| X03 | [Nome] | [Motivo] |
 
-> ⚠️ **Nota**: Qualsiasi richiesta relativa agli elementi esclusi richiederà una Change Request formale con valutazione di impatto su tempi e costi.
-
----
-
-## 3. Struttura e Navigazione
-
-### 3.1 Mappa del Sito / App
-
-```
-[Rappresentazione gerarchica - esempio:]
-
-Home
-├── Chi Siamo
-│   ├── Storia
-│   └── Team
-├── Servizi
-│   ├── Servizio A
-│   ├── Servizio B
-│   └── Servizio C
-├── News
-│   ├── Lista News
-│   └── Dettaglio News
-├── Contatti
-└── Area Riservata
-    ├── Login
-    ├── Dashboard
-    ├── Profilo
-    └── [Altre sezioni]
-```
-
-### 3.2 Wireframe
-
-I wireframe sono disponibili qui: **[Link a Figma / Miro / allegati]**
-
-#### Elenco schermate incluse:
-
-| ID | Schermata | Descrizione | Link |
-|----|-----------|-------------|------|
-| W01 | Homepage | [Descrizione] | [Link] |
-| W02 | [Nome] | [Descrizione] | [Link] |
-| W03 | [Nome] | [Descrizione] | [Link] |
-
-### 3.3 Flussi Utente Principali
-
-#### Flusso 1: [Nome flusso - es: Registrazione]
-1. Utente accede a [pagina]
-2. Compila form con [campi]
-3. Sistema [azione]
-4. Utente riceve [feedback]
-
-#### Flusso 2: [Nome flusso]
-1. ...
+> **Nota**: Qualsiasi richiesta relativa agli elementi esclusi richiederà una **Change Request** formale.
 
 ---
 
-## 4. Requisiti Tecnici e Vincoli
+<!-- SEZIONE PA: includere solo per progetti Pubblica Amministrazione -->
+## 4. Conformità normativa
 
-### 4.1 Requisiti Non Funzionali
-
-| Requisito | Specifica |
-|-----------|-----------|
-| Responsive | Mobile, Tablet, Desktop |
-| Browser supportati | Chrome, Firefox, Safari, Edge (ultime 2 versioni) |
-| Accessibilità | WCAG 2.1 Livello AA |
-| Performance | Tempo caricamento < 3 secondi |
-| Sicurezza | HTTPS, [altri requisiti] |
-
-### 4.2 Integrazioni
-
-| Sistema | Tipo | Responsabile | Stato |
-|---------|------|--------------|-------|
-| [Nome sistema] | API REST | [Chi] | [Disponibile/In corso/Da definire] |
+| Normativa/Linea guida | Stato | Note |
+| :---- | :---- | :---- |
+| **Linee Guida Design PA** (AgID) | ✓ Previsto | Struttura conforme ai modelli AgID |
+| **WCAG 2.1 Livello AA** | ✓ Previsto | Verifiche accessibilità in fase sviluppo |
+| **CAD** (Codice Amministrazione Digitale) | ✓ Conforme | Requisiti digitali PA rispettati |
+<!-- FINE SEZIONE PA -->
 
 ---
 
-## 5. Criteri di Accettazione
+## 5. Criteri di accettazione
 
-### Per ogni funzionalità principale:
+Per l'approvazione del presente Gate si richiede la validazione di:
 
-#### F01: [Nome funzionalità]
-
-**DATO CHE** [contesto/precondizione]
-**QUANDO** [azione utente]
-**ALLORA** [risultato atteso]
-
-Esempio:
-> **DATO CHE** sono un utente registrato sulla pagina di login
-> **QUANDO** inserisco credenziali valide e clicco "Accedi"
-> **ALLORA** vengo reindirizzato alla dashboard e vedo il mio nome in alto a destra
-
-#### F02: [Nome funzionalità]
-...
+- [ ] **Perimetro funzionale** (incluso ed escluso)
+- [ ] **Architettura dell'informazione e sitemap**
+- [ ] **Wireframe** e flussi utente principali
 
 ---
 
-## 6. Contenuti
+## 6. Modalità di approvazione
 
-### 6.1 Responsabilità contenuti
-
-| Tipo contenuto | Responsabile | Scadenza |
-|----------------|--------------|----------|
-| Testi pagine statiche | [Cliente/Net7] | [Data] |
-| Immagini | [Cliente/Net7] | [Data] |
-| Documenti PDF | [Cliente] | [Data] |
-| Video | [Cliente] | [Data] |
-
-### 6.2 Contenuti placeholder
-Net7 inserirà contenuti placeholder dove non ancora disponibili. La sostituzione con contenuti definitivi è a carico di [Cliente/Net7].
-
----
-
-## 7. SLA e Processo
-
-### 7.1 Tempistiche approvazione
+### 6.1 Tempistiche (SLA)
 
 | Fase | Durata | Scadenza |
-|------|--------|----------|
-| Review wireframe | 5 gg lavorativi | [Data] |
-| Consolidamento feedback | 2 gg lavorativi | [Data] |
-| Approvazione formale | 3 gg lavorativi | [Data] |
+| :---- | :---- | :---- |
+| Review Cliente | 5 giorni lavorativi | [Data] |
+| Approvazione formale | 3 giorni lavorativi | [Data] |
 
-### 7.2 Silenzio-assenso
-In assenza di feedback entro la scadenza indicata, il presente documento si intenderà **approvato tacitamente** e Net7 procederà con la fase successiva (design UI/mockup).
+### 6.2 Silenzio-assenso
 
-### 7.3 Gestione modifiche post-approvazione
-Dopo l'approvazione di questo documento:
-- Modifiche al perimetro richiedono **Change Request** formale
-- Modifiche alla struttura richiedono **Change Request** formale
-- Chiarimenti e dettagli minori possono essere gestiti via email
+In assenza di riscontro scritto entro i termini sopra indicati, il documento si intenderà **approvato per silenzio-assenso**, come da prassi progettuale concordata.
+
+### 6.3 Modifiche post-approvazione
+
+Modifiche a scope e struttura dopo G1 richiedono **Change Request** formale con valutazione impatto.
 
 ---
 
-## 8. Rischi Identificati
+## 7. Impatto dell'approvazione
 
-| ID | Rischio | Impatto | Mitigazione |
-|----|---------|---------|-------------|
-| R1 | [Descrizione] | [A/M/B] | [Azione] |
-| R2 | [Descrizione] | [A/M/B] | [Azione] |
+L'approvazione del presente Gate autorizza:
 
----
-
-## 9. Prossimi Passi (post approvazione G1)
-
-| Azione | Responsabile | Scadenza prevista |
-|--------|--------------|-------------------|
-| Avvio design UI/mockup | Designer | [Data] |
-| Presentazione mockup | PM | [Data] |
-| Richiesta approvazione G2 | PM | [Data] |
+1. **Avvio design UI/mockup** grafico
+2. **Congelamento scope** funzionale (modifiche successive = CR)
+3. **Pianificazione** milestone successive
 
 ---
 
-## 10. Checklist di Approvazione
+## 8. Approvazione formale
 
-Prima di approvare, verificare di aver:
+Con la sottoscrizione del presente documento, il Cliente approva il perimetro funzionale e la struttura e autorizza il passaggio alla fase di design UI.
 
-- [ ] Revisionato tutte le funzionalità incluse
-- [ ] Verificato che le esclusioni siano corrette
-- [ ] Navigato i wireframe
-- [ ] Validato i flussi utente
-- [ ] Confermato i criteri di accettazione
-- [ ] Verificato le responsabilità sui contenuti
+| Ruolo | Nome e Cognome | Data | Firma |
+| :---- | :---- | :---- | :---- |
+| **PM Fornitore** | [Nome] | [Data] | |
+| **Referente Cliente** | [Nome] | | |
 
 ---
 
-## Approvazione Gate G1
+## Allegati
 
-### Dichiarazione
-Con la presente approvazione, il Cliente conferma che:
-1. Il perimetro funzionale descritto è corretto e completo
-2. La struttura e i wireframe rappresentano quanto richiesto
-3. I criteri di accettazione sono condivisi
-4. Eventuali modifiche future seguiranno il processo di Change Request
-
-### Firme
-
-| Ruolo | Nome | Firma/Conferma | Data |
-|-------|------|----------------|------|
-| Referente Cliente | [Nome] | | |
-| Project Manager Net7 | [Nome] | | |
+- [ ] A1 — Documento scope/requisiti: [Link]
+- [ ] A2 — Sitemap: [Link]
+- [ ] A3 — Wireframes: [Link]
+- [ ] A4 — Flussi utente: [Link]
 
 ---
 
-### Modalità di approvazione
-
-✅ **Opzione 1**: Firmare questo documento e restituire via email
-
-✅ **Opzione 2**: Rispondere all'email di invio con testo:
-> *"Confermo l'approvazione del documento Gate G1 - Wireframe e Scope versione [X.X] datato [GG/MM/AAAA]."*
-
----
-
-*Documento creato seguendo le linee guida del Sistema Qualità Net7 — ISO 9001:2015*
+*Documento generato seguendo le linee guida del Sistema Qualità Net7 — ISO 9001:2015*

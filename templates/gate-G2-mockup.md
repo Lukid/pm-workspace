@@ -1,127 +1,131 @@
-# Gate G2 — Approvazione Mockup e Design UI
-
-> Documento di approvazione del design grafico e dell'interfaccia utente
+# GATE G2 — Consegna e Approvazione Design UI/UX
 
 ---
 
-## Metadata
+**Progetto**: [Nome progetto]
+**Cliente**: [Nome cliente]
+**Fornitore**: Net7 S.r.l.
+**CIG/CUP**: [Codice]
 
-| Campo | Valore |
-|-------|--------|
-| **Progetto** | [Nome progetto] |
-| **Cliente** | [Nome cliente] |
-| **Versione** | 1.0 |
-| **Data** | [GG/MM/AAAA] |
-| **Redatto da** | [Nome PM] |
-| **Designer** | [Nome designer] |
-| **Destinatario** | [Nome referente cliente] |
-| **Scadenza feedback** | [Data - 5gg lavorativi] |
-| **Scadenza approvazione** | [Data - 3gg dopo feedback] |
+**Data consegna**: [GG/MM/AAAA]
+**Protocollo**: G2-[CODICE]-[ANNO]-001
 
 ---
 
-## 1. Scopo del Documento
+## 1. Oggetto
 
-Questo documento richiede l'approvazione formale di:
-1. **Design grafico** (look & feel, stile visivo)
-2. **Interfacce utente** (mockup delle schermate)
-3. **Componenti UI** (bottoni, form, card, ecc.)
+Con il presente documento si sottopone formalmente all'approvazione del Cliente la **proposta grafica e di User Experience** per [nome deliverable], come previsto dal Progetto Esecutivo.
 
-L'approvazione di questo documento costituisce il **Gate G2** e autorizza l'avvio della fase di sviluppo.
+Il superamento del presente Gate (G2) costituisce **requisito propedeutico** all'avvio della fase di sviluppo.
 
 ---
 
-## 2. Riferimenti
+## 2. Deliverable consegnati
 
-| Documento | Versione | Data approvazione |
-|-----------|----------|-------------------|
-| Gate G1 - Wireframe e Scope | [X.X] | [Data] |
-| Brand Guidelines (se fornite) | [X.X] | [Data] |
+### 2.1 Architettura dell'informazione
 
----
+- Sitemap: [Link Figma]
+- Wireframes: [Link Figma]
 
-## 3. Mockup
+### 2.2 Pagine e percorsi utente
 
-### 3.1 Link ai file
-I mockup completi sono disponibili qui: **[Link a Figma / XD / Sketch]**
+- Vista complessiva: [Link Figma]
+- Prototipo navigabile: [Link prototipo]
 
-### 3.2 Elenco schermate
+| Pagina | Link |
+| :---- | :---- |
+| Homepage | ✓ [Figma](link) |
+| [Pagina listing] | ✓ [Figma](link) |
+| [Pagina dettaglio] | ✓ [Figma](link) |
+| [Area riservata] | ✓ [Figma](link) |
+| **Componenti principali** | |
+| Header e navigazione | ✓ [Figma](link) |
+| Footer | ✓ [Figma](link) |
 
-| ID | Schermata | Breakpoint | Link diretto |
-|----|-----------|------------|--------------|
-| M01 | Homepage | Desktop | [Link] |
-| M01m | Homepage | Mobile | [Link] |
-| M02 | [Nome] | Desktop | [Link] |
-| M02m | [Nome] | Mobile | [Link] |
+### 2.3 Design System e UI Kit
 
----
-
-## 4. Design System
-
-### 4.1 Palette Colori
-
-| Nome | Codice | Uso |
-|------|--------|-----|
-| Primary | #[XXXXXX] | CTA, elementi principali |
-| Secondary | #[XXXXXX] | Elementi secondari |
-| Text | #[XXXXXX] | Testo principale |
-| Background | #[XXXXXX] | Sfondo pagine |
-
-### 4.2 Tipografia
-
-| Elemento | Font | Peso | Dimensione |
-|----------|------|------|------------|
-| H1 | [Font] | Bold | [XX]px |
-| Body | [Font] | Regular | [XX]px |
-| Button | [Font] | Semibold | [XX]px |
+| Elemento | Riferimento |
+| :---- | :---- |
+| Palette colori | [Figma](link) |
+| Tipografia | [Figma](link) |
+| Spaziature e Grid | [Figma](link) |
+| Iconografia | [Figma](link) |
+| Componenti UI | [Figma](link) |
 
 ---
 
-## 5. SLA e Processo
+<!-- SEZIONE PA: includere solo per progetti Pubblica Amministrazione -->
+## 3. Conformità normativa
 
-### 5.1 Tempistiche approvazione
+| Normativa/Linea guida | Stato | Note |
+| :---- | :---- | :---- |
+| **Linee Guida Design PA** (AgID) | ✓ Conforme | Modelli e componenti in linea con i principi AgID |
+| **WCAG 2.1 Livello AA** | ✓ Previsto | Verifiche accessibilità in fase sviluppo |
+| **Legge 4/2004** (Legge Stanca) | ✓ Previsto | Dichiarazione accessibilità post go-live |
+| **GDPR** | ✓ Conforme | Privacy by design applicata |
+<!-- FINE SEZIONE PA -->
+
+---
+
+## 4. Criteri di accettazione
+
+Per l'approvazione del presente Gate si richiede la validazione di:
+
+- [ ] **Architettura dell'informazione e sitemap**
+- [ ] **Pagine e sezioni principali** e **percorsi utente**
+- [ ] **Design system e UI kit**
+
+---
+
+## 5. Modalità di approvazione
+
+### 5.1 Tempistiche (SLA)
 
 | Fase | Durata | Scadenza |
-|------|--------|----------|
-| Review mockup | 5 gg lavorativi | [Data] |
-| Approvazione formale | 3 gg lavorativi | [Data] |
+| :---- | :---- | :---- |
+| Review Cliente | 5 giorni lavorativi | [Data] |
+| Approvazione formale | 3 giorni lavorativi | [Data] |
 
 ### 5.2 Silenzio-assenso
-In assenza di feedback entro la scadenza indicata, il presente documento si intenderà **approvato tacitamente**.
 
-### 5.3 Gestione modifiche post-approvazione
-Modifiche al design dopo l'approvazione richiedono **Change Request** formale.
+In assenza di riscontro scritto entro i termini sopra indicati, il design si intenderà **approvato per silenzio-assenso**, come da prassi progettuale concordata.
 
----
+### 5.3 Modifiche post-approvazione
 
-## 6. Prossimi Passi (post approvazione G2)
-
-| Azione | Responsabile | Scadenza prevista |
-|--------|--------------|-------------------|
-| Avvio sviluppo | Dev Team | [Data] |
-| Primo deploy staging | Dev Team | [Data] |
-| Inizio UAT (G3) | PM | [Data] |
+Modifiche al design dopo G2 richiedono **Change Request** formale con valutazione impatto.
 
 ---
 
-## 7. Checklist di Approvazione
+## 6. Impatto dell'approvazione
 
-- [ ] Revisionato tutte le schermate desktop
-- [ ] Revisionato tutte le schermate mobile
-- [ ] Verificato palette colori e tipografia
-- [ ] Approvato stile componenti UI
+L'approvazione del presente Gate autorizza:
 
----
-
-## Approvazione Gate G2
-
-Con la presente approvazione, il Cliente conferma che il design grafico e i mockup sono conformi alle aspettative.
-
-| Ruolo | Nome | Firma/Conferma | Data |
-|-------|------|----------------|------|
-| Referente Cliente | [Nome] | | |
-| Project Manager Net7 | [Nome] | | |
+1. **Avvio sviluppo** [tecnologia/framework]
+2. **Setup ambienti** di sviluppo e staging
+3. **Inizio attività** di [migrazione contenuti / sviluppo funzionalità]
+4. **Congelamento baseline** grafica (modifiche successive = CR)
 
 ---
 
-*Documento creato seguendo le linee guida del Sistema Qualità Net7 — ISO 9001:2015*
+## 7. Approvazione formale
+
+Con la sottoscrizione del presente documento, il Cliente approva i deliverable di design UI/UX consegnati e autorizza il passaggio alla fase di sviluppo.
+
+| Ruolo | Nome e Cognome | Data | Firma |
+| :---- | :---- | :---- | :---- |
+| **PM Fornitore** | [Nome] | [Data] | |
+| **Referente Cliente** | [Nome] | | |
+
+---
+
+## Allegati
+
+- [ ] A1 — Sitemap: [Link]
+- [ ] A2 — Wireframes: [Link]
+- [ ] A3 — Pagine e percorsi: [Link]
+- [ ] A4 — Prototipo navigabile: [Link]
+- [ ] A5 — UI Kit: [Link]
+
+---
+
+*Documento generato seguendo le linee guida del Sistema Qualità Net7 — ISO 9001:2015*
