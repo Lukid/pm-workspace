@@ -66,6 +66,55 @@ Per tornare: `modalità pm` o `pm mode`
 
 ---
 
+## Skills (Slash Commands)
+
+Comandi rapidi per operazioni frequenti. Invocabili con `/nome`.
+
+| Skill | Descrizione | Esempio |
+|-------|-------------|---------|
+| `/status` | Status rapido progetto (semaforo, azioni, rischi) | `/status anci-cittadino-informato` |
+| `/sal` | Genera SAL completo | `/sal ispro 15-31 gennaio` |
+| `/gate` | Genera documento Gate con wizard | `/gate G2 sviluppo-toscana` |
+
+### Uso
+
+```bash
+# Status del progetto corrente (se in directory progetto)
+/status
+
+# Status di un progetto specifico
+/status nome-progetto
+
+# Genera SAL per progetto con periodo
+/sal nome-progetto periodo
+
+# SAL con periodo implicito (ultime 2 settimane)
+/sal nome-progetto
+
+# Genera gate con wizard interattivo
+/gate
+
+# Genera gate specifico per progetto
+/gate G2 sviluppo-toscana
+```
+
+### Skill /gate — Wizard Interattivo
+
+La skill `/gate` guida nella creazione del documento con domande specifiche per tipo:
+
+**G1 (Wireframe)**: Link wireframe, funzionalità incluse/escluse, data feedback
+**G2 (Mockup)**: Link Figma mockup, prototipo, elenco pagine, UI kit, conformità PA
+**G3 (UAT)**: URL staging, periodo UAT, riepilogo bug, funzionalità verificate
+**G4 (Go-live)**: URL produzione, versione, smoke test, garanzia
+
+Per progetti PA viene aggiunta automaticamente la sezione conformità normativa (WCAG, AgID, GDPR).
+
+Le skills sono definite in `.claude/skills/` e possono essere estese.
+
+Vedi [methodology/skills-guide.md](methodology/skills-guide.md) per dettagli su come creare nuove skills.
+
+---
+
 ## Sincronizzazione GitLab
 
 ### Comando Base
@@ -169,4 +218,4 @@ Max 3 domande se mancano info, poi assumo default ragionevoli.
 
 ---
 
-*Ultimo aggiornamento: Gennaio 2026*
+*Ultimo aggiornamento: Febbraio 2026*
