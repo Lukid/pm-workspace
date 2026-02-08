@@ -31,8 +31,16 @@ Desktop.ini
 # IDE
 .idea/
 .vscode/
+.obsidian/
 *.swp
 *.swo
+
+# =====================================================
+# Configurazione locale (contiene URL infrastruttura interna)
+# =====================================================
+.mcp.json
+.claude/settings.local.json
+mcp-servers/
 
 # =====================================================
 # File temporanei
