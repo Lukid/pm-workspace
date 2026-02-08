@@ -12,7 +12,7 @@ arguments:
 
 # Skill: Genera SAL
 
-Genera un documento SAL (Stato Avanzamento Lavori) per il progetto specificato.
+Genera un documento SAL completo e self-contained.
 
 ## Istruzioni
 
@@ -24,13 +24,13 @@ Altrimenti:
 - Se sì, usa quel progetto
 - Se no, chiedi all'utente quale progetto
 
-### 2. Carica il contesto del progetto
+### 2. Carica il contesto
 
-Leggi i seguenti file dalla directory del progetto:
-- `.project-context.md` — metadata progetto (nome, cliente, budget, stato gate)
+Leggi in parallelo dalla directory del progetto:
+- `.project-context.md` — metadata (nome, cliente, budget, stato gate)
 - `actions.md` — azioni in corso e completate
 - `raid.md` — rischi, assunzioni, issue, dipendenze
-- `decisions.md` — decisioni prese
+- `decisions.md` — decisioni prese e pendenti
 - `changes/` — eventuali CR attive
 
 ### 3. Determina il periodo
@@ -38,75 +38,165 @@ Leggi i seguenti file dalla directory del progetto:
 Se specificato in `$ARGUMENTS`, usa quel periodo.
 Altrimenti usa le ultime 2 settimane dalla data odierna.
 
-### 4. Identifica il numero SAL
+### 4. Calcola numero SAL
 
 Conta i file esistenti in `sal/` per determinare il numero progressivo.
 
 ### 5. Genera il SAL
 
-Usa il template `templates/sal.md` e compila:
+Compila il template sotto con i dati reali del progetto.
 
-**Sezione 1 - Riepilogo Esecutivo**:
-- Sintesi in 2-3 frasi dello stato generale
-- Evidenzia se siamo in linea o ci sono criticità
+**Regole per il riepilogo esecutivo:**
+- Max 3 frasi, tono professionale ma chiaro
+- Evidenzia subito se ci sono criticità
+- Stile: "Il progetto procede in linea con la pianificazione..." oppure "Si segnala un ritardo di X giorni su..."
 
-**Sezione 2 - Stato Generale**:
-- Ambito: 🟢 se scope stabile, 🟡 se ci sono CR pendenti, 🔴 se scope fuori controllo
-- Tempi: 🟢 se in linea con timeline, 🟡 se ritardi < 1 settimana, 🔴 se ritardi > 1 settimana
-- Budget: 🟢 se nessuna CR, 🟡 se CR < 10% budget, 🔴 se CR > 10% budget
+**Regole semaforo:**
 
-**Sezione 3 - Attività Completate**:
-- Estrai da `actions.md` le azioni con stato "Completato" nel periodo
-
-**Sezione 4 - Attività in Corso**:
-- Estrai da `actions.md` le azioni con stato "In corso"
-- Stima avanzamento % se possibile
-
-**Sezione 5 - Milestone**:
-- Usa i gate da `.project-context.md`
-- Aggiungi milestone significative
-
-**Sezione 6 - Criticità e Rischi**:
-- Estrai da `raid.md` i rischi con priorità Alta o Media
-- Aggiungi criticità emerse nel periodo
-
-**Sezione 7 - Decisioni Richieste**:
-- Estrai da `decisions.md` le decisioni pendenti
-- Evidenzia conseguenze se non deciso
-
-**Sezione 8 - Change Request**:
-- Lista CR dalla directory `changes/`
-
-**Sezione 9 - Prossimi Passi**:
-- Prossime 3-5 attività pianificate
-- Assegna responsabile e scadenza
-
-**Sezione 10 - Quadro Economico**:
-- Solo se dati disponibili in project-context
+| Indicatore | 🟢 Verde | 🟡 Giallo | 🔴 Rosso |
+|-----------|----------|-----------|----------|
+| **Ambito** | Scope stabile, nessuna CR pendente | CR pendenti o scope in discussione | Multiple CR non approvate, scope fuori controllo |
+| **Tempi** | In linea con go-live, nessuna azione scaduta | Ritardo < 1 settimana o azioni scadute < 3 | Ritardo > 1 settimana o azioni scadute >= 3 |
+| **Budget** | Nessuna CR che impatta budget | CR approvate < 10% budget | CR approvate >= 10% budget |
 
 ### 6. Salva il documento
 
-Salva in: `projects/[nome-progetto]/sal/SAL-[YYYY-MM-DD].md`
+Salva in: `projects/[nome]/sal/SAL-[YYYY-MM-DD].md`
 
 ### 7. Output finale
 
-Conferma:
+Conferma con riepilogo:
 ```
 SAL generato: sal/SAL-[data].md
 
 Riepilogo:
 - Periodo: [periodo]
-- Stato: [🟢/🟡/🔴]
+- Semaforo: Ambito [emoji] | Tempi [emoji] | Budget [emoji]
 - Attività completate: [N]
 - Rischi attivi: [N]
 - Decisioni pendenti: [N]
 ```
 
-## Esempi di utilizzo
+---
 
-```
-/sal
-/sal anci-cittadino-informato
-/sal anci-cittadino-informato 15-31 gennaio
-/sal periodo ultima settimana
+## Template SAL
+
+```markdown
+# SAL — Stato Avanzamento Lavori
+
+---
+
+| Campo | Valore |
+|-------|--------|
+| **Progetto** | [Nome progetto] |
+| **Cliente** | [Nome cliente] |
+| **Periodo** | [Data inizio] - [Data fine] |
+| **SAL n.** | [Numero progressivo] |
+| **Redatto da** | [Nome PM] |
+| **Data** | [YYYY-MM-DD] |
+
+---
+
+## 1. Riepilogo Esecutivo
+
+[2-3 frasi: stato generale, criticità, risultati principali del periodo]
+
+---
+
+## 2. Stato Generale
+
+| Ambito | Tempi | Budget |
+|--------|-------|--------|
+| 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
+
+**Legenda**: 🟢 In linea | 🟡 A rischio | 🔴 Critico
+
+---
+
+## 3. Attività Completate
+
+| Attività / Deliverable | Data | Note |
+|------------------------|------|------|
+| [Attività 1] | [Data] | ✅ |
+
+---
+
+## 4. Attività in Corso
+
+| Attività | Avanzamento | Scadenza prevista |
+|----------|-------------|-------------------|
+| [Attività 1] | [XX]% | [Data] |
+
+---
+
+## 5. Milestone
+
+| Milestone | Data prevista | Stato |
+|-----------|---------------|-------|
+| G1 Wireframe | [Data] | ✅/🔄/⏳ |
+| G2 Mockup | [Data] | ✅/🔄/⏳ |
+| G3 UAT | [Data] | ✅/🔄/⏳ |
+| G4 Go-live | [Data] | ✅/🔄/⏳ |
+
+---
+
+## 6. Criticità e Rischi
+
+| Criticità / Rischio | Impatto | Azione |
+|---------------------|---------|--------|
+| [Descrizione] | Alto/Medio | [Mitigazione] |
+
+---
+
+## 7. Decisioni Richieste
+
+| Decisione | Entro il | Priorità | Conseguenza se non deciso |
+|-----------|----------|----------|---------------------------|
+| [Tema] | [Data] | Alta/Media | [Impatto] |
+
+> **Nota**: In assenza di risposta entro la scadenza, Net7 procederà con l'opzione di default o sospenderà le attività dipendenti.
+
+---
+
+## 8. Change Request
+
+| CR ID | Descrizione | Stato | Impatto |
+|-------|-------------|-------|---------|
+| CR-XXX | [Descrizione] | Approvata/Pendente | €[X] |
+
+---
+
+## 9. Prossimi Passi
+
+| Attività | Responsabile | Scadenza |
+|----------|--------------|----------|
+| [Attività 1] | [Chi] | [Data] |
+
+---
+
+## 10. Quadro Economico
+
+| Voce | Importo |
+|------|---------|
+| Valore contratto | €[importo] |
+| SAL precedenti | €[importo] |
+| Presente SAL | €[importo] |
+| CR approvate | €[importo] |
+| **Totale fatturato** | **€[importo]** |
+| **Residuo** | **€[importo]** |
+
+---
+
+## Approvazione SAL
+
+Il presente SAL si considera approvato se non pervengono osservazioni scritte entro **5 giorni lavorativi** dalla ricezione.
+
+| Ruolo | Firma | Data |
+|-------|-------|------|
+| PM Net7 | | |
+| Referente Cliente | | |
+
+---
+
+*Documento generato seguendo le linee guida del Sistema Qualità Net7 — ISO 9001:2015*
 ```

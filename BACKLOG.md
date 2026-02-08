@@ -1,216 +1,62 @@
 # Backlog Miglioramenti — PM Workspace
 
-> Elenco dei miglioramenti futuri per il workspace. Da consultare in **Develop Mode**.
-
----
-
-## 🚀 Iniziative Strategiche (In Planning)
-
-### A. MCP Server + Subagent Architecture
-**Vision**: Automazione workflow PM + integrazione GitLab + OpenSpec per progetti software.
-**Fase**: Pianificazione completata ([INTEGRATION-PLAN.md](INTEGRATION-PLAN.md))
-**Impatto**: 🔥 Molto Alto - Trasforma il workspace da statico ad automation-first
-
-**Roadmap**:
-- **Fase 0**: Setup MCP Server GitLab esistente (n8n) ⚡ **CURRENT**
-- **Fase 1**: GitLab MCP Enhancement (CRUD issue, branch, MR, sync)
-- **Fase 2**: OpenSpec Integration (spec-driven development per progetti software)
-- **Fase 3**: Workspace MCP (comandi custom: `genera SAL`, `apri CR`, etc.)
-- **Fase 4**: Subagent Architecture (PM Agent + Dev Agent + Orchestrator)
-- **Fase 5**: Advanced Features (analytics, AI insights, integrazioni esterne)
-
-**Dipendenze**:
-- GitLab self-hosted API access (gitlab.netseven.it)
-- OpenSpec installation (`npm install -g @fission-ai/openspec`)
-- MCP server development capability
-
-**Next Steps**:
-1. [x] Analizzare MCP server n8n esistente
-2. [x] Documentare current state
-3. [x] Identificare gap vs requirements
-4. [ ] Implementare miglioramenti (vedi mcp-servers/gitlab-net7/MIGRATION-GUIDE.md)
-5. [ ] Test su progetto pilota
-
-**Riferimenti**:
-- [INTEGRATION-PLAN.md](INTEGRATION-PLAN.md) - Piano completo dettagliato
-- [OpenSpec GitHub](https://github.com/Fission-AI/OpenSpec)
-- [methodology/gitlab-workflow.md](methodology/gitlab-workflow.md)
-
 ---
 
 ## Gap Critici (Priorità Alta)
 
 ### 1. Template Lessons Learned
 **Problema**: La checklist di closure lo menziona ma non esiste un template dedicato.
-**Impatto**: Requisito ISO 9001 (miglioramento continuo), perdita di conoscenza.
-
-**Contenuto suggerito**:
-- Cosa ha funzionato bene
-- Cosa è andato storto
-- Cause root dei problemi
-- Azioni correttive per progetti futuri
-- Feedback del team
-- Feedback del cliente
-
+**Impatto**: Requisito ISO 9001 (miglioramento continuo).
 **File da creare**: `templates/lessons-learned.md`
-
----
 
 ### 2. Template Garanzia/Post-Go-Live
 **Problema**: Dopo G4 inizia la garanzia ma non c'è template per gestirla.
-**Impatto**: Ambiguità su SLA, rischio di lavoro extra non pagato.
-
-**Contenuto suggerito**:
-- Durata garanzia (30/60/90 gg)
-- SLA risposta e risoluzione per severity
-- Canale di segnalazione (email? GitLab?)
-- Criteri per distinguere bug vs enhancement
-- Processo escalation in garanzia
-- Cosa è coperto vs cosa è fatturabile
-
+**Impatto**: Ambiguità su SLA, rischio lavoro extra non pagato.
 **File da creare**: `templates/warranty-plan.md`
 
----
-
 ### 3. Template Stima/Estimate
-**Problema**: Le stime non sono strutturate, causa #1 di sforamenti.
-**Impatto**: Budget errati, margini erosi.
-
-**Contenuto suggerito**:
-- Breakdown per componente/funzionalità
-- Assunzioni di stima (esplicitate)
-- Rischi e contingency %
-- Confronto stima vs consuntivo (per calibrazione futura)
-- Chi ha stimato e quando
-
+**Problema**: Stime non strutturate = causa #1 sforamenti.
 **File da creare**: `templates/estimate.md`
 
----
-
 ### 4. Sezione Accessibilità WCAG
-**Problema**: Per progetti PA è obbligatorio (CAD, AGID), non menzionato nei template.
-**Impatto**: Bug di accessibilità possono essere bloccanti per legge.
-
+**Problema**: Per PA obbligatorio, non strutturato nei template.
 **Azioni**:
-- [ ] Aggiungere checklist WCAG 2.1 AA in `checklists/pre-uat.md`
-- [ ] Aggiungere sezione "Requisiti di accessibilità" in `templates/project-brief.md`
-- [ ] Creare `checklists/accessibility-checklist.md` (opzionale)
-
----
+- [ ] Checklist WCAG in `checklists/pre-uat.md`
+- [ ] Sezione accessibilità in brief
+- [ ] `checklists/accessibility-checklist.md` (opzionale)
 
 ### 5. Sezione GDPR/Privacy
-**Problema**: Per PA e privati è critico, nessun template lo copre.
-**Impatto**: Rischio legale, mancata compliance.
-
+**Problema**: Critico per PA e privati, nessun template lo copre.
 **Azioni**:
-- [ ] Aggiungere sezione in `templates/project-brief.md`:
-  - Tipologia dati trattati
-  - Titolare/Responsabile trattamento
-  - Luogo hosting
-  - Misure di sicurezza
-  - Informativa privacy necessaria?
+- [ ] Sezione in brief: dati trattati, titolare, hosting, misure sicurezza
 
 ---
 
 ## Gap Secondari (Priorità Media)
 
-### 6. Template Handover/Passaggio Consegne
-**Quando serve**: Cambio PM mid-progetto, passaggio a manutenzione.
+### 6. Template Handover
+Cambio PM mid-progetto o passaggio a manutenzione.
 
-**Contenuto suggerito**:
-- Stato attuale progetto
-- Contatti chiave (interni ed esterni)
-- Rischi aperti
-- Decisioni pendenti
-- Dove trovare cosa (documentazione, credenziali, repo)
-- Prossimi passi critici
+### 7. Template Feedback Cliente
+Post-progetto, NPS, soddisfazione. Utile per ISO.
 
-**File da creare**: `templates/handover.md`
-
----
-
-### 7. Template Survey/Feedback Cliente
-**Quando serve**: Post-progetto per misurare soddisfazione.
-**Valore aggiunto**: Utile anche per ISO (customer satisfaction).
-
-**Contenuto suggerito**:
-- NPS (Net Promoter Score)
-- Soddisfazione su: comunicazione, qualità, tempi, supporto
-- Cosa ha funzionato bene
-- Cosa potevamo fare meglio
-- Referenza/testimonial
-
-**File da creare**: `templates/client-feedback.md`
-
----
-
-### 8. Gestione Multi-Progetto/Capacity
-**Problema**: Luca gestisce più progetti contemporaneamente, manca vista d'insieme.
-
-**Idee**:
-- File `projects/_portfolio.md` con overview tutti i progetti attivi
-- Template per allocazione risorse settimanale
-- Sistema per segnalare conflitti di priorità
-
----
+### 8. Vista Portfolio Multi-Progetto
+Overview tutti i progetti attivi, allocazione risorse, conflitti priorità.
 
 ### 9. Template Proposta Evolutive
-**Quando serve**: Alla chiusura progetto per proporre manutenzione/sviluppi futuri.
-
-**Contenuto suggerito**:
-- Riepilogo progetto concluso
-- Proposte evolutive identificate durante il progetto
-- Stima di massima
-- Vantaggi per il cliente
-- Modalità contrattuali (T&M, pacchetto ore, nuovo fixed price)
-
-**File da creare**: `templates/proposal-evolutive.md`
-
----
+Chiusura progetto → proposta manutenzione/sviluppi futuri.
 
 ### 10. Template Debito Tecnico
-**Problema**: Le cose fatte "quick & dirty" non vengono tracciate.
-
-**Contenuto suggerito**:
-- Cosa è stato fatto in modo subottimale
-- Perché (pressione tempi, budget, scope)
-- Impatto se non sistemato
-- Effort stimato per sistemare
-- Priorità
-
-**File da creare**: `templates/technical-debt.md` o sezione in `raid.md`
+Tracciamento cose fatte "quick & dirty" con impatto e effort per sistemare.
 
 ---
 
-## Miglioramenti Minori (Nice to Have)
+## Miglioramenti Minori
 
-### 11. Più esempi
-Attualmente c'è solo 1 esempio (PA). Aggiungere:
-- [ ] Esempio brief progetto privato
-- [ ] Esempio SAL
-- [ ] Esempio CR compilata
-
-### 12. Checklist sicurezza
-Per progetti con dati sensibili:
-- [ ] `checklists/security-checklist.md`
-
-### 13. Template per kick-off meeting
-Agenda strutturata per il primo incontro con il cliente.
+- [ ] Più esempi: brief privato, SAL compilato, CR compilata
+- [ ] Checklist sicurezza per progetti con dati sensibili
+- [ ] Template agenda kick-off meeting
 
 ---
 
-## Come Usare Questo File
-
-1. In **Develop Mode**, consulta questo backlog per decidere cosa implementare
-2. Quando completi un item, spostalo in fondo con ✅ e data
-3. Aggiungi nuovi item man mano che emergono
-
----
-
-## Completati
-
-*Nessun item completato ancora*
-
----
-
-*Ultimo aggiornamento: Gennaio 2026*
+*Ultimo aggiornamento: Febbraio 2026*

@@ -31,12 +31,14 @@ Leggi in parallelo:
 
 ### 3. Calcola metriche
 
-**Azioni**:
+**Azioni** (riconosci i vari formati usati nei progetti):
 - Conta azioni per stato: Completate, In corso, Bloccate, Pendenti
 - Identifica azioni scadute (data < oggi e stato != Completato)
+- Formati stato riconosciuti: ⏳/🔄/✅ emoji, "Da fare"/"In corso"/"Completata" testo, "DA FARE"/"IN CORSO" caps
 
 **Rischi**:
 - Conta rischi attivi per priorità (🔴 Alta, 🟡 Media, 🟢 Bassa)
+- Riconosci anche formati testo: "Alta"/"ALTA", P0/P1/P2
 - Evidenzia rischi P0/P1 non mitigati
 
 **Decisioni**:
@@ -48,8 +50,6 @@ Leggi in parallelo:
 - Prossimo gate da raggiungere
 
 ### 4. Genera output
-
-Formato output conciso:
 
 ```
 ## [Nome Progetto] — Status
@@ -90,31 +90,14 @@ Formato output conciso:
 
 ### 5. Logica semaforo
 
-**Ambito**:
-- 🟢 Nessuna CR pendente, scope stabile
-- 🟡 CR pendenti o scope in discussione
-- 🔴 Scope fuori controllo, multiple CR non approvate
-
-**Tempi**:
-- 🟢 In linea con go-live, nessuna azione scaduta
-- 🟡 Ritardo < 1 settimana o azioni scadute < 3
-- 🔴 Ritardo > 1 settimana o azioni scadute >= 3
-
-**Budget**:
-- 🟢 Nessuna CR approvata che impatta budget
-- 🟡 CR approvate < 10% budget originale
-- 🔴 CR approvate >= 10% budget originale
-
-## Esempi di utilizzo
-
-```
-/status
-/status anci-cittadino-informato
-/status ispro
-```
+| Indicatore | 🟢 Verde | 🟡 Giallo | 🔴 Rosso |
+|-----------|----------|-----------|----------|
+| **Ambito** | Nessuna CR pendente, scope stabile | CR pendenti o scope in discussione | Scope fuori controllo, multiple CR non approvate |
+| **Tempi** | In linea con go-live, nessuna azione scaduta | Ritardo < 1 settimana o azioni scadute < 3 | Ritardo > 1 settimana o azioni scadute >= 3 |
+| **Budget** | Nessuna CR approvata che impatta budget | CR approvate < 10% budget originale | CR approvate >= 10% budget originale |
 
 ## Varianti
 
 Per uno status più dettagliato, suggerisci:
-- `Genera SAL` per report formale completo
+- `/sal` per report formale completo
 - `Apri progetto [nome]` per entrare nel contesto completo

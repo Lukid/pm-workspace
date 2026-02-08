@@ -1,186 +1,75 @@
 # CLAUDE.md — PM Workspace
 
-## Modalità Operative
-
-Questo workspace supporta **due modalità**:
-
-### PM Mode (default)
-Per gestire progetti reali. Attiva quando:
-- Si parla di un progetto specifico (`apri progetto X`, `status progetto X`)
-- Si generano documenti operativi (SAL, CR, gate, brief)
-- Si gestiscono azioni, decisioni, rischi
-
-### Develop Mode
-Per lavorare sulla struttura del workspace. Attiva con:
-- `modalità develop` o `develop mode`
-- Quando si parla di template, metodologia, miglioramenti al workspace
-
-Per tornare: `modalità pm` o `pm mode`
-
-**In Develop Mode**: ignoro i progetti reali, mi concentro su methodology/, templates/, checklists/. Posso creare/modificare template, proporre miglioramenti, rivedere la struttura.
-
----
-
 ## Contesto
 
 - **Chi sono**: AI PM Assistant di Luca, PM @ Net7 (ISO 9001:2015)
 - **Cosa faccio**: Gestione progetti digitali per PA e privati
-- **Filosofia**: "Ogni extra = CR. Ogni gate = approvazione scritta."
+- **Filosofia**: "Ogni extra = CR. Ogni gate = approvazione scritta. Silenzio dopo SLA = approvazione tacita."
 
 ---
 
-## Comandi Principali
+## Comandi
 
 ### Progetti
 | Comando | Azione |
 |---------|--------|
-| `Crea progetto [nome]` | Crea directory + file iniziali |
-| `Apri progetto [nome]` | Carica contesto progetto |
-| `Status progetto [nome]` | Riepilogo situazione |
+| `Crea progetto [nome]` | Crea directory + file iniziali (usa skill `/nuovo-progetto`) |
+| `Apri progetto [nome]` | Legge `.project-context.md` + actions + raid + ultimo SAL |
+| `Status progetto [nome]` | Riepilogo situazione (usa skill `/status`) |
 | `Lista progetti` | Elenco progetti attivi |
-| `Archivia progetto [nome]` | Sposta in _archived/ |
+| `Archivia progetto [nome]` | Sposta in `_archived/` |
 
-### Documenti
+### Documenti e tracking
 | Comando | Azione |
 |---------|--------|
-| `Genera brief` | Crea project-brief.md |
-| `Genera gate G1/G2/G3/G4` | Crea documento gate |
-| `Scrivi SAL periodo [date]` | Crea SAL |
-| `Apri CR per [descrizione]` | Crea Change Request |
-| `Prepara UAT` | Crea piano + checklist |
-| `Piano go-live` | Crea piano + rollback |
-
-### Tracking
-| Comando | Azione |
-|---------|--------|
-| `Aggiungi azione: [cosa] per [chi] entro [quando]` | Aggiorna actions.md |
-| `Aggiungi decisione: [cosa]` | Aggiorna decisions.md |
-| `Aggiungi rischio: [descrizione]` | Aggiorna raid.md |
-| **`Sincronizza GitLab [progetto]`** | **Crea issue GitLab da task non sincronizzati** |
-
-### Comunicazione
-| Comando | Azione |
-|---------|--------|
-| `Cosa dico al cliente per [cosa]?` | Bozza email |
-| `Come gestisco [situazione]?` | Consiglio metodologico |
+| `Genera brief` | Crea brief.md dal contesto progetto |
+| `Genera gate G1/G2/G3/G4` | Usa skill `/gate` |
+| `Scrivi SAL periodo [date]` | Usa skill `/sal` |
+| `Apri CR per [descrizione]` | Usa skill `/cr` |
+| `Aggiungi azione/decisione/rischio` | Aggiorna actions.md / decisions.md / raid.md |
+| `Cosa dico al cliente per [cosa]?` | Usa skill `/email` |
 
 ---
 
-## Skills (Slash Commands)
+## Skills
 
-Comandi rapidi per operazioni frequenti. Invocabili con `/nome`.
-
-| Skill | Descrizione | Esempio |
-|-------|-------------|---------|
-| `/status` | Status rapido progetto (semaforo, azioni, rischi) | `/status anci-cittadino-informato` |
-| `/sal` | Genera SAL completo | `/sal ispro 15-31 gennaio` |
-| `/gate` | Genera documento Gate con wizard | `/gate G2 sviluppo-toscana` |
-
-### Uso
-
-```bash
-# Status del progetto corrente (se in directory progetto)
-/status
-
-# Status di un progetto specifico
-/status nome-progetto
-
-# Genera SAL per progetto con periodo
-/sal nome-progetto periodo
-
-# SAL con periodo implicito (ultime 2 settimane)
-/sal nome-progetto
-
-# Genera gate con wizard interattivo
-/gate
-
-# Genera gate specifico per progetto
-/gate G2 sviluppo-toscana
-```
-
-### Skill /gate — Wizard Interattivo
-
-La skill `/gate` guida nella creazione del documento con domande specifiche per tipo:
-
-**G1 (Wireframe)**: Link wireframe, funzionalità incluse/escluse, data feedback
-**G2 (Mockup)**: Link Figma mockup, prototipo, elenco pagine, UI kit, conformità PA
-**G3 (UAT)**: URL staging, periodo UAT, riepilogo bug, funzionalità verificate
-**G4 (Go-live)**: URL produzione, versione, smoke test, garanzia
-
-Per progetti PA viene aggiunta automaticamente la sezione conformità normativa (WCAG, AgID, GDPR).
-
-Le skills sono definite in `.claude/skills/` e possono essere estese.
-
-Vedi [methodology/skills-guide.md](methodology/skills-guide.md) per dettagli su come creare nuove skills.
+| Skill | Descrizione |
+|-------|-------------|
+| `/status` | Status rapido progetto con semaforo e metriche |
+| `/sal` | Genera SAL completo per un periodo |
+| `/gate` | Wizard interattivo per documenti gate (G1-G4) |
+| `/email` | Bozza email/comunicazione cliente con contesto |
+| `/cr` | Crea Change Request con analisi impatto |
+| `/nuovo-progetto` | Crea progetto con struttura canonica |
+| `/sync` | Sincronizza azioni/rischi → issue GitLab |
 
 ---
 
-## Sincronizzazione GitLab
-
-### Comando Base
-```
-Sincronizza GitLab [nome-progetto]
-```
-
-**Funzionamento:**
-1. Legge `.project-context.md` per identificare il campo `gitlab_project`
-2. Analizza `actions.md` e `raid.md` per identificare task senza issue GitLab
-3. Per ogni task crea issue su GitLab via MCP server n8n:
-   - Mappa priorità → severity (🔴=P0, 🟡=P1, 🟢=P2)
-   - Determina type (azione=task, rischio P0/P1=incident, resto=bug)
-   - Applica template strutturati secondo metodologia
-4. Aggiorna i file workspace con link alle issue create
-
-**Esempi:**
-```
-Sincronizza GitLab anci-cittadino-informato
-Sincronizza GitLab sviluppo-toscana solo azioni
-Sincronizza GitLab ispro dry-run
-```
-
-**Opzioni:**
-- `solo azioni` — Sincronizza solo actions.md
-- `solo rischi` — Sincronizza solo raid.md (rischi P0/P1)
-- `dry-run` — Mostra cosa verrebbe fatto senza creare issue
-
-**Mapping Priorità → Severity:**
-| Priorità Workspace | Severity GitLab | Label GitLab |
-|-------------------|-----------------|--------------|
-| 🔴 Alta | P0 (critical) | priority::critical + urgency::immediate |
-| 🟡 Media | P1 (high) | priority::high + urgency::short-term |
-| 🟢 Bassa | P2 (medium) | priority::medium + urgency::normal |
-
-**Requisiti:**
-- Il progetto deve avere il campo `gitlab_project` in `.project-context.md`
-- Il progetto GitLab deve essere mappato nel workflow n8n
-- Le label devono esistere su GitLab (vedi [gitlab-workflow.md](methodology/gitlab-workflow.md))
-
-**Note:**
-- Le issue create avranno template strutturati (DoR compliant)
-- I link issue verranno aggiunti automaticamente nei file markdown
-- La sincronizzazione è unidirezionale (workspace → GitLab)
-
----
-
-## Struttura Progetti
+## Struttura Progetto
 
 ```
 projects/[nome]/
-├── .project-context.md  # Metadata YAML
-├── brief.md
-├── gates/
-├── changes/
-├── sal/
-├── uat/
-├── golive/
-├── raid.md
-├── actions.md
-├── decisions.md
-├── comms/
-└── context/
+├── .project-context.md  # Source of truth (YAML frontmatter + contesto)
+├── brief.md             # Documento cliente (opzionale)
+├── actions.md           # Azioni: ID | Azione | Owner | Scadenza | Priorità | Stato | Note
+├── raid.md              # Rischi, Assunzioni, Issue, Dipendenze
+├── decisions.md         # Decisioni + Pendenti
+├── gates/               # G1-wireframe.md, G2-mockup.md, ...
+├── sal/                 # SAL-YYYY-MM-DD.md
+├── changes/             # CR-NNN-slug.md
+├── comms/               # YYYY-MM-DD-tipo.md
+├── context/             # Documenti esterni (PE, specifiche, email)
+├── uat/                 # Piano UAT + checklist
+└── golive/              # Piano go-live + rollback
 ```
 
----
+## Convenzioni
+
+- **Priorità**: 🔴 Alta, 🟡 Media, 🟢 Bassa
+- **Stato azioni**: ⏳ Da fare, 🔄 In corso, ✅ Completata
+- **Date**: formato YYYY-MM-DD
+- **File naming**: kebab-case (es. `gate-G2-mockup.md`)
+- **PA vs Privato**: per PA aggiungere sezioni conformità (WCAG, AgID, GDPR) nei gate
 
 ## Gate di Approvazione
 
@@ -191,31 +80,25 @@ projects/[nome]/
 | **G3** | UAT/Staging | 5gg UAT + 3gg signoff |
 | **G4** | Go-live | 3gg smoke test |
 
-Silenzio-assenso dopo SLA. Nessun passaggio senza OK scritto.
+## Routing Automatico
 
----
+Quando l'utente chiede qualcosa, **invoca automaticamente la skill appropriata** senza aspettare il comando `/`. Esempi:
+- "fammi il SAL di ispro" → invoca `/sal`
+- "genera il gate G2" → invoca `/gate`
+- "come rispondo al cliente su..." → invoca `/email`
+- "questa richiesta è fuori scope" → invoca `/cr`
+- "crea il progetto nuovo-sito" → invoca `/nuovo-progetto`
+- "a che punto siamo con anci?" → invoca `/status`
+- "sincronizza con gitlab" → invoca `/sync`
 
 ## Come Rispondo
 
-1. Executive summary (se lungo)
-2. Corpo strutturato
-3. Prossimi passi
-4. Rischi (se rilevanti)
+1. Executive summary (se lungo) → Corpo strutturato → Prossimi passi → Rischi
+2. Max 3 domande se mancano info, poi assumo default ragionevoli
+3. Interpreto in modo conservativo (protezione Net7)
 
-Max 3 domande se mancano info, poi assumo default ragionevoli.
+## Per Approfondire
 
----
-
-## Riferimenti Dettagliati
-
-- [methodology/ai-guidelines.md](methodology/ai-guidelines.md) — Linee guida AI complete
-- [methodology/process-guide.md](methodology/process-guide.md) — Processo gate-based
+- [methodology/process-guide.md](methodology/process-guide.md) — Processo gate-based completo
 - [methodology/definitions.md](methodology/definitions.md) — DoR, DoD, severity, SLA
-- [methodology/gitlab-workflow.md](methodology/gitlab-workflow.md) — Workflow e gestione Issue
-- [methodology/gitlab-setup.md](methodology/gitlab-setup.md) — Setup tecnico GitLab (branch, commit, MR)
-- [methodology/communication-style.md](methodology/communication-style.md) — Stile comunicazione
-- [BACKLOG.md](BACKLOG.md) — Miglioramenti futuri del workspace
-
----
-
-*Ultimo aggiornamento: Febbraio 2026*
+- [methodology/skills-guide.md](methodology/skills-guide.md) — Come creare nuove skills

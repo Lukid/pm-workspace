@@ -1,94 +1,50 @@
 ---
-# Metadata progetto — YAML valido, parsabile
-nome: "[Nome Progetto]"
-codice: "[Codice interno / CIG / CUP]"
-cliente: "[Nome Cliente]"
-tipo: "PA"  # PA | Privato
-contratto: "Fixed Price"  # Fixed Price | T&M
-
-budget: 0  # in euro, senza simbolo
-data_inizio: "YYYY-MM-DD"
-data_golive_prevista: "YYYY-MM-DD"
-data_golive_effettiva: null
-stato: "In corso"  # In corso | Completato | Sospeso | Annullato
-
-gitlab_url: "https://gitlab.net7.it/..."
-staging_url: "https://staging..."
-production_url: "https://..."
-drive_folder: "https://drive.google.com/..."
-openmemo_id: ""
-
-team_net7:
-  - ruolo: "PM"
-    nome: "Luca"
-    email: ""
-  - ruolo: "Tech Lead"
-    nome: ""
-    email: ""
-  - ruolo: "Dev"
-    nome: ""
-    email: ""
-  - ruolo: "Designer"
-    nome: ""
-    email: ""
-
-team_cliente:
-  - ruolo: "Sponsor/RUP"
-    nome: ""
-    email: ""
-    telefono: ""
-  - ruolo: "Referente operativo"
-    nome: ""
-    email: ""
-    telefono: ""
-
+project_name: "[Nome completo]"
+client: "[Cliente]"
+pm: "[PM]"
+status: "in-corso"
+type: "[pa|privato]"
+start_date: "YYYY-MM-DD"
+target_golive: "YYYY-MM-DD"
+budget: 0
+cig: ""
+gitlab_project: ""
 gates:
-  G1_wireframe:
-    stato: "pending"  # pending | approved
-    data: null
-  G2_mockup:
-    stato: "pending"
-    data: null
-  G3_uat:
-    stato: "pending"
-    data: null
-  G4_golive:
-    stato: "pending"
-    data: null
-
-note: |
-  [Informazioni importanti da ricordare, peculiarità del cliente, vincoli particolari]
-
-documenti_contesto:
-  - nome: "Progetto esecutivo cliente"
-    presente: false
-  - nome: "Specifiche tecniche"
-    presente: false
-  - nome: "Brand guidelines"
-    presente: false
+  G1: { stato: pending, data: null }
+  G2: { stato: pending, data: null }
+  G3: { stato: pending, data: null }
+  G4: { stato: pending, data: null }
 ---
 
-# Project Context
+# [Nome Progetto]
 
-Questo file contiene i metadata del progetto in formato YAML (frontmatter).
+## Scope
 
-## Come usare questo file
+[Descrizione sintetica del progetto e degli obiettivi principali]
 
-1. **Compila il frontmatter YAML** sopra con i dati reali del progetto
-2. **Aggiorna lo stato dei gate** man mano che vengono approvati
-3. **Aggiungi note** per informazioni importanti da ricordare
+## Team
 
-## Documenti di contesto
+### Net7
+| Ruolo | Nome |
+|-------|------|
+| PM | [Nome] |
+| Tech Lead | [Nome] |
+| Dev | [Nome] |
+| Designer | [Nome] |
 
-Carica nella cartella `context/` i documenti esterni rilevanti:
-- Progetto esecutivo del cliente
-- Specifiche tecniche
-- Brand guidelines
-- Email importanti
-- Altro materiale di riferimento
+### Cliente
+| Ruolo | Nome | Email |
+|-------|------|-------|
+| Sponsor/RUP | [Nome] | [Email] |
+| Referente operativo | [Nome] | [Email] |
 
-Poi aggiorna la sezione `documenti_contesto` nel frontmatter.
+## Link Utili
 
----
+- GitLab: [URL]
+- Figma: [URL]
+- Staging: [URL]
+- Drive: [URL]
 
-*Ultimo aggiornamento: [Data]*
+## Note
+
+[Informazioni importanti, vincoli, peculiarità del cliente]
